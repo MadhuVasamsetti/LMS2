@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  mysqldb:
+    container_name: mysql-db
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: lmscicd
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  backend:
+    container_name: springboot
+    build:
+      context: ./Backend-LMS
+      dockerfile: ../docker-fullstack/backend.Dockerfile
+    image: sdp-cicd-backend
+    ports:
+      - "8887:1111"
+    depends_on:
+      - mysqldb
+    restart: on-failure
+
+  frontend:
+    container_name: react
+    build:
+      context: ./frontend
+      dockerfile: ../docker-fullstack/frontend.Dockerfile
+    image: sdp-cicd-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+volumes:
+  mysql-data:

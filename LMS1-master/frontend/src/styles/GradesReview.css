@@ -1,0 +1,113 @@
+.grades-review-page {
+  padding: 2rem;
+  background: #f8fafc;
+  min-height: 100vh;
+}
+
+.page-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: #1e293b;
+}
+
+.no-data {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #64748b;
+  margin-top: 2rem;
+}
+
+.grades-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+}
+
+.grades-table th,
+.grades-table td {
+  padding: 12px 16px;
+  text-align: left;
+}
+
+.grades-table th {
+  background: #f1f5f9;
+  font-weight: 600;
+  color: #334155;
+}
+
+.grades-table tr:nth-child(even) {
+  background: #f9fafb;
+}
+
+.progress-bar {
+  height: 8px;
+  width: 100px;
+  background: #e2e8f0;
+  border-radius: 4px;
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #3b82f6;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  font-size: 0.85rem;
+  color: #475569;
+}
+
+.grade-tag {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: inline-block;
+}
+
+.grade-a {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.grade-b {
+  background: #fef9c3;
+  color: #ca8a04;
+}
+
+.grade-c {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.grade-none {
+  background: #e2e8f0;
+  color: #475569;
+}
+
+.btn.small {
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn.primary {
+  background: #3b82f6;
+  color: white;
+}
+
+.btn.primary:hover {
+  background: #2563eb;
+}

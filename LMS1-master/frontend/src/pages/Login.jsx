@@ -1,74 +1,98 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import "../styles/Login.css";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("STUDENT"); // default role
+
   const { login, user } = useAuth();
   const navigate = useNavigate();
 
-  // 🔹 Redirect if already logged in
+  // Redirect if already logged in
   useEffect(() => {
     if (user) {
-      if (user.role === "STUDENT") navigate("/student/courses");
-      else if (user.role === "ADMIN") navigate("/admin/manage-courses");
+      if (user.role === "STUDENT") {
+        navigate("/student/courses");
+      } else if (user.role === "ADMIN") {
+        navigate("/admin/manage-courses");
+      }
     }
   }, [user, navigate]);
 
+  // Handle Login
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       const response = await fetch("http://localhost:1111/auth-api/login", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password, role }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
       });
 
-      if (!response.ok) throw new Error("Invalid credentials");
+      if (!response.ok) {
+        throw new Error("Invalid credentials");
+      }
 
-      const user = await response.json();
-      login(user);
+      const loggedInUser = await response.json();
 
-      if (user.role === "STUDENT") navigate("/student/courses");
-      else if (user.role === "ADMIN") navigate("/admin/manage-courses");
+      login(loggedInUser);
+
+      if (loggedInUser.role === "STUDENT") {
+        navigate("/student/courses");
+      } else if (loggedInUser.role === "ADMIN") {
+        navigate("/admin/manage-courses");
+      }
     } catch (err) {
-      console.error("Login failed:", err.message);
-      alert("Invalid email, password, or role");
+      console.error(err);
+      alert("Invalid email or password.");
     }
   };
 
   return (
-    <div className="auth-container">
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit} className="auth-form">
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
+    <div className="auth-page">
+      <div className="auth-card">
+        <h2>Welcome Back 👋</h2>
+        <p className="auth-subtitle">
+          Login to continue your learning journey.
+        </p>
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+        <form onSubmit={handleSubmit}>
+          <input
+            type="email"
+            placeholder="Enter Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
 
-        {/* 🔹 Role selection */}
-        <select value={role} onChange={(e) => setRole(e.target.value)} required>
-          <option value="STUDENT">Student</option>
-          <option value="ADMIN">Admin</option>
-        </select>
+          <input
+            type="password"
+            placeholder="Enter Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
 
-        <button type="submit">Login</button>
-      </form>
+          <button type="submit" className="btn">
+            Login
+          </button>
+        </form>
+
+        <div className="auth-footer">
+          <p>
+            Don't have an account?{" "}
+            <Link to="/register">Register</Link>
+          </p>
+        </div>
+      </div>
     </div>
   );
 }

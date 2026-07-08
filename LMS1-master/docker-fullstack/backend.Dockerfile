@@ -11,7 +11,7 @@ COPY src ./src
 
 RUN ./mvnw clean package -DskipTests
 
-# Stage 2: Run the app
+# Stage 2: Run the app4
 FROM eclipse-temurin:21-jdk
 
 WORKDIR /app

@@ -1,93 +1,313 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/Home.css";
-import logo from "../assets/logo192.png"; // ✅ Import your LMS logo
 
 export default function Home() {
   return (
-    <div className="page home-page">
-      {/* Hero Section */}
-      <section className="hero">
-        <div className="hero-content">
-          {/* Brand Row */}
-          
-          
+    <div className="home">
 
-          {/* Headline */}
+      
+
+      <section className="hero">
+
+        
+        <div className="circle"></div>
+        <div className="circle"></div>
+        <div className="circle"></div>
+
+        <div className="hero-content">
+
+          <span className="tag">
+            🚀 India's Modern Learning Management Platform
+          </span>
+
           <h1>
-            Training in the <span className="highlight">Now.</span>
+            Upgrade Your <span>Skills</span>
+            <br />
+            Build Your
+            <br />
+            Dream Career
           </h1>
+
           <p>
-            Smarter, faster learning for students and admins. Manage courses,
-            track progress, and grow your skills today.
+            Learn from industry experts with interactive courses,
+            practical projects, quizzes, certifications and career-ready
+            training—all in one modern learning platform.
           </p>
 
-          {/* CTA buttons */}
-          <div className="hero-ctas">
-            <Link to="/student/courses" className="btn">
-              Browse Courses
+          <div className="hero-buttons">
+
+            <Link
+              to="/student/courses"
+              className="primary-btn"
+            >
+              Explore Courses
             </Link>
-            <Link to="/register" className="btn btn-outline">
-              Enroll Now
+
+            <Link
+              to="/register"
+              className="secondary-btn"
+            >
+              Join Free
             </Link>
+
           </div>
+
         </div>
+
       </section>
 
-      {/* Features Section */}
-      <section className="features container">
-        <div className="feature">
-          <h3>For Students</h3>
-          <p>Enroll in courses, follow lessons, and view your grades.</p>
+      
+
+      <section className="stats">
+
+        <div className="stat">
+          <h2>250+</h2>
+          <p>Premium Courses</p>
         </div>
-        <div className="feature">
-          <h3>For Admins</h3>
-          <p>Create and manage courses, monitor students, and grade them.</p>
+
+        <div className="stat">
+          <h2>15K+</h2>
+          <p>Active Students</p>
         </div>
-        <div className="feature">
-          <h3>Track Progress</h3>
-          <p>Stay motivated with progress tracking and visual grade reports.</p>
+
+        <div className="stat">
+          <h2>120+</h2>
+          <p>Expert Mentors</p>
         </div>
+
+        <div className="stat">
+          <h2>98%</h2>
+          <p>Placement Success</p>
+        </div>
+
       </section>
 
-      {/* About Section */}
-      <section className="about container">
-        <h2>About MyLMS</h2>
+      
+
+      <section className="features">
+
+        <h2>Why Students Love MyLMS</h2>
+
+        <div className="feature-grid">
+
+          <div className="card">
+
+            <h3>📚 Interactive Courses</h3>
+
+            <p>
+              Learn through videos, coding exercises,
+              assignments, quizzes and real-world projects
+              designed by experienced instructors.
+            </p>
+
+          </div>
+
+          <div className="card">
+
+            <h3>👨‍🏫 Expert Mentors</h3>
+
+            <p>
+              Get guidance from professional mentors
+              with years of industry experience and
+              practical knowledge.
+            </p>
+
+          </div>
+
+          <div className="card">
+
+            <h3>📈 Progress Tracking</h3>
+
+            <p>
+              Monitor your learning progress,
+              completed lessons, quiz scores and
+              overall performance in one dashboard.
+            </p>
+
+          </div>
+
+          <div className="card">
+
+            <h3>🏆 Certificates</h3>
+
+            <p>
+              Receive certificates after successfully
+              completing courses and showcase them
+              in your professional portfolio.
+            </p>
+
+          </div>
+
+          <div className="card">
+
+            <h3>💻 Learn Anywhere</h3>
+
+            <p>
+              Continue learning seamlessly from
+              desktop, tablet or smartphone
+              whenever you want.
+            </p>
+
+          </div>
+
+          <div className="card">
+
+            <h3>⚡ Career Focused</h3>
+
+            <p>
+              Master practical skills that help
+              you prepare for internships,
+              placements and technical interviews.
+            </p>
+
+          </div>
+
+        </div>
+
+      </section>
+           
+
+      <section className="categories">
+
+        <h2>Explore Popular Categories</h2>
+
+        <div className="category-grid">
+
+          <div>
+            💻
+            <br />
+            Web Development
+          </div>
+
+          <div>
+            📱
+            <br />
+            App Development
+          </div>
+
+          <div>
+            🤖
+            <br />
+            Artificial Intelligence
+          </div>
+
+          <div>
+            ☁️
+            <br />
+            Cloud Computing
+          </div>
+
+          <div>
+            🎨
+            <br />
+            UI / UX Design
+          </div>
+
+          <div>
+            🐍
+            <br />
+            Python Programming
+          </div>
+
+          <div>
+            📊
+            <br />
+            Data Science
+          </div>
+
+          <div>
+            🔐
+            <br />
+            Cyber Security
+          </div>
+
+        </div>
+
+      </section>
+
+      
+
+      <section className="testimonial">
+
+        <h2>What Our Students Say</h2>
+
+        <div className="reviews">
+
+          <div className="review">
+
+            <p>
+              "MyLMS completely changed the way I learn.
+              The projects and quizzes helped me become
+              job-ready."
+            </p>
+
+            <span>⭐⭐⭐⭐⭐</span>
+
+            <br />
+
+            <strong>Rahul Kumar</strong>
+
+          </div>
+
+          <div className="review">
+
+            <p>
+              "The instructors explain concepts very clearly.
+              I landed my internship after completing the
+              Full Stack course."
+            </p>
+
+            <span>⭐⭐⭐⭐⭐</span>
+
+            <br />
+
+            <strong>Priya Sharma</strong>
+
+          </div>
+
+          <div className="review">
+
+            <p>
+              "Beautiful interface, excellent content and
+              practical learning. Highly recommended for
+              every student."
+            </p>
+
+            <span>⭐⭐⭐⭐⭐</span>
+
+            <br />
+
+            <strong>Akash Reddy</strong>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      
+
+      <section className="cta">
+
+        <h2>Ready To Start Learning?</h2>
+
         <p>
-          MyLMS is a modern Learning Management System designed to empower both
-          students and administrators. With easy-to-use tools for course
-          management, grading, and tracking progress, MyLMS makes education more
-          engaging and effective.
+          Join thousands of students who are upgrading
+          their skills and building successful careers
+          with MyLMS.
         </p>
-      </section>
 
-      {/* Testimonials Section */}
-      <section className="testimonials container">
-        <h2>What Our Users Say</h2>
-        <div className="testimonial-cards">
-          <div className="testimonial">
-            <p>"This platform helped me stay on track with my courses!"</p>
-            <span>- Student</span>
-          </div>
-          <div className="testimonial">
-            <p>"Managing courses has never been this easy."</p>
-            <span>- Admin</span>
-          </div>
-          <div className="testimonial">
-            <p>"The progress tracking motivates me to study daily."</p>
-            <span>- Learner</span>
-          </div>
-        </div>
-      </section>
-
-      {/* Call-to-Action */}
-      <section className="cta container">
-        <h2>Ready to Start Learning?</h2>
-        <p>Join thousands of learners and unlock your potential today.</p>
-        <Link to="/register" className="btn">
-          Get Started
+        <Link
+          to="/register"
+          className="primary-btn"
+        >
+          Start Learning Today
         </Link>
+
       </section>
+
+      
 
       
     </div>

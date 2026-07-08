@@ -1,33 +1,39 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import "./../styles/Navbar.css";
+import "../styles/Navbar.css";
 
 export default function Navbar() {
   const { user, logout } = useAuth();
-  const nav = useNavigate();
+  const navigate = useNavigate();
+
   const [menuOpen, setMenuOpen] = useState(false);
 
-  function handleLogout() {
+  const handleLogout = () => {
     logout();
-    nav("/"); // redirect to Home after logout
+    navigate("/");
     setMenuOpen(false);
-  }
+  };
 
-  function handleLinkClick() {
-    setMenuOpen(false); // close menu when a link is clicked
-  }
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
 
   return (
     <nav className="navbar">
-      {/* Left side - Brand */}
-      <div className="navbar-left">
-        <Link to="/" className="brand" onClick={handleLinkClick}>
-          MyLMS
-        </Link>
-      </div>
 
-      {/* Hamburger for mobile */}
+      {/* Brand */}
+
+      <Link
+        to="/"
+        className="brand"
+        onClick={closeMenu}
+      >
+        MyLMS
+      </Link>
+
+      {/* Mobile Menu */}
+
       <div
         className={`hamburger ${menuOpen ? "active" : ""}`}
         onClick={() => setMenuOpen(!menuOpen)}
@@ -37,75 +43,118 @@ export default function Navbar() {
         <span></span>
       </div>
 
-      {/* Links - collapse on mobile */}
       <div className={`navbar-links ${menuOpen ? "open" : ""}`}>
-        <div className="navbar-center">
-          {/* Always show */}
-          <Link to="/" onClick={handleLinkClick}>
-            Home
-          </Link>
-          
 
-          {/* Student links */}
-          {user?.role === "STUDENT" && (
+        <div className="navbar-center">
+
+          {/* Before Login */}
+
+          {!user && (
             <>
-              <Link to="/student/courses" onClick={handleLinkClick}>
+              <Link
+                to="/student/courses"
+                onClick={closeMenu}
+              >
                 Courses
               </Link>
-              <Link to="/dashboard" onClick={handleLinkClick}>
+            </>
+          )}
+
+          {/* Student */}
+
+          {user?.role === "STUDENT" && (
+            <>
+              <Link
+                to="/dashboard"
+                onClick={closeMenu}
+              >
                 Dashboard
               </Link>
-              <Link to="/profile" onClick={handleLinkClick}>
+
+              <Link
+                to="/student/courses"
+                onClick={closeMenu}
+              >
+                Courses
+              </Link>
+
+              <Link
+                to="/profile"
+                onClick={closeMenu}
+              >
                 Profile
               </Link>
             </>
           )}
 
-          {/* Admin links */}
+          {/* Admin */}
+
           {user?.role === "ADMIN" && (
             <>
-              <Link to="/admin/grades-review" onClick={handleLinkClick}>
-                Grades Review
-              </Link>
-              <Link to="/admin/manage-courses" onClick={handleLinkClick}>
+              <Link
+                to="/admin/manage-courses"
+                onClick={closeMenu}
+              >
                 Manage Courses
               </Link>
-              <Link to="/admin/manage-students" onClick={handleLinkClick}>
+
+              <Link
+                to="/admin/manage-students"
+                onClick={closeMenu}
+              >
                 Manage Students
+              </Link>
+
+              <Link
+                to="/profile"
+                onClick={closeMenu}
+              >
+                Profile
               </Link>
             </>
           )}
+
         </div>
 
         <div className="navbar-right">
-          {!user && (
+
+          {!user ? (
             <>
               <Link
                 to="/login"
                 className="btn btn-login"
-                onClick={handleLinkClick}
+                onClick={closeMenu}
               >
                 Login
               </Link>
+
               <Link
                 to="/register"
                 className="btn btn-outline"
-                onClick={handleLinkClick}
+                onClick={closeMenu}
               >
                 Register
               </Link>
             </>
-          )}
-          {user && (
+          ) : (
             <>
-              <span className="nav-user">Hi, {user.name}</span>
-              <button onClick={handleLogout} className="btn btn-ghost">
+              <span className="nav-user">
+                Hi, {user.name}
+              </span>
+
+              <button
+                className="btn btn-ghost"
+                onClick={handleLogout}
+              >
                 Logout
               </button>
             </>
           )}
+
         </div>
+
       </div>
+
     </nav>
   );
 }

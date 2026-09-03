@@ -1,8 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom"; // ✅ import Link
+import { Link } from "react-router-dom"; 
 import "../../styles/Courses.css";
 
-// 👉 Import local images from assets
+
 import reactPic from "../../assets/reactpic.jpg";
 import pythonPic from "../../assets/pythonpic.jpg";
 import dsaPic from "../../assets/dsapic.jpg";
@@ -84,7 +84,7 @@ export default function Courses() {
               <p className="instructor">Instructor: {course.instructor}</p>
               <p className="description">{course.description}</p>
               <div className="card-actions">
-                {/* ✅ Both buttons go to /register */}
+                
                 <Link to="/register" className="btn">
                   View Details
                 </Link>
